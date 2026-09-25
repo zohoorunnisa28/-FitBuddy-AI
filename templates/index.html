@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FitBuddy AI | Your Personal AI Coach</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<nav class="navbar">
+
+    <div class="brand">
+        <div class="brand-icon">⚡</div>
+
+        <div>
+            <strong>FitBuddy</strong>
+            <span>AI COACH</span>
+        </div>
+    </div>
+
+    <div class="nav-status">
+        <span class="pulse"></span>
+        AI ONLINE
+    </div>
+
+</nav>
+
+
+<main class="hero">
+
+    <section class="hero-content">
+
+        <div class="eyebrow">
+            ✦ PERSONALIZED FITNESS INTELLIGENCE
+        </div>
+
+        <h1>
+            Your Fitness.
+            <span>Your AI.</span>
+            Your Future.
+        </h1>
+
+        <p class="hero-description">
+
+            FitBuddy uses AI to create personalized
+            workout plans, nutrition guidance and
+            adaptive fitness journeys designed around you.
+
+        </p>
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>7</strong>
+                <span>DAY PLANS</span>
+            </div>
+
+            <div>
+                <strong>AI</strong>
+                <span>PERSONALIZED</span>
+            </div>
+
+            <div>
+                <strong>24/7</strong>
+                <span>COACHING</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="coach-card">
+
+        <div class="card-top">
+
+            <div>
+                <span class="mini-label">
+                    FITBUDDY AI
+                </span>
+
+                <h2>
+                    Start Your Journey
+                </h2>
+            </div>
+
+            <div class="ai-orb">
+                ✦
+            </div>
+
+        </div>
+
+
+        <form
+            action="/generate-workout"
+            method="post"
+        >
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label>Your Name</label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="e.g. Alex"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>User ID</label>
+
+                    <input
+                        type="text"
+                        name="user_id"
+                        placeholder="e.g. alex01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Age</label>
+
+                    <input
+                        type="number"
+                        name="age"
+                        min="13"
+                        max="100"
+                        placeholder="21"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Weight (kg)</label>
+
+                    <input
+                        type="number"
+                        name="weight"
+                        step="0.1"
+                        placeholder="65"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Primary Goal</label>
+
+                <select name="goal" required>
+
+                    <option value="">
+                        Select your goal
+                    </option>
+
+                    <option value="Weight Loss">
+                        🔥 Weight Loss
+                    </option>
+
+                    <option value="Muscle Building">
+                        💪 Muscle Building
+                    </option>
+
+                    <option value="General Fitness">
+                        ⚡ General Fitness
+                    </option>
+
+                    <option value="Strength">
+                        🏋️ Strength
+                    </option>
+
+                    <option value="Endurance">
+                        🏃 Endurance
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Workout Intensity</label>
+
+                <div class="intensity-options">
+
+                    <label class="intensity">
+
+                        <input
+                            type="radio"
+                            name="intensity"
+                            value="Beginner"
+                            checked
+                        >
+
+                        <span>
+                            🌱 Beginner
+                        </span>
+
+                    </label>
+
+
+                    <label class="intensity">
+
+                        <input
+                            type="radio"
+                            name="intensity"
+                            value="Intermediate"
+                        >
+
+                        <span>
+                            ⚡ Intermediate
+                        </span>
+
+                    </label>
+
+
+                    <label class="intensity">
+
+                        <input
+                            type="radio"
+                            name="intensity"
+                            value="Advanced"
+                        >
+
+                        <span>
+                            🔥 Advanced
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                type="submit"
+            >
+
+                <span>GENERATE MY AI PLAN</span>
+
+                <b>→</b>
+
+            </button>
+
+        </form>
+
+
+        <div class="secure-note">
+
+            🔒 Your fitness profile is stored securely
+            for your personalized journey.
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<section class="features">
+
+    <div class="feature">
+
+        <div class="feature-icon">🧠</div>
+
+        <h3>AI Personalization</h3>
+
+        <p>
+            Your profile becomes the foundation
+            for your personalized fitness plan.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">📅</div>
+
+        <h3>7-Day Strategy</h3>
+
+        <p>
+            Receive a structured weekly journey
+            instead of random exercises.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">🥗</div>
+
+        <h3>Wellness Guidance</h3>
+
+        <p>
+            Get AI-powered nutrition, hydration
+            and recovery suggestions.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">🔄</div>
+
+        <h3>Adaptive Coaching</h3>
+
+        <p>
+            Give feedback and let AI adapt
+            your plan around your experience.
+        </p>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <strong>FITBUDDY AI</strong>
+
+    <span>
+        Personalized fitness powered by AI.
+    </span>
+
+</footer>
+
+</body>
+
+</html>

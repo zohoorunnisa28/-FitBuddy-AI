@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy AI | Updated Plan</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #dcffe8, transparent 35%),
+                radial-gradient(circle at bottom right, #dcecff, transparent 35%),
+                #f7faf8;
+            color: #17251d;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 40px 0 70px;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .logo span {
+            color: #27a65a;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #123b25, #217346);
+            color: white;
+            border-radius: 28px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(20,80,45,.18);
+        }
+
+        .hero-icon {
+            font-size: 55px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin: 12px 0;
+        }
+
+        .hero p {
+            color: #d9efe0;
+            line-height: 1.6;
+        }
+
+        .feedback-summary {
+            background: white;
+            margin-top: 25px;
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.07);
+        }
+
+        .feedback-summary h2 {
+            margin-bottom: 15px;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 9px 14px;
+            border-radius: 30px;
+            background: #e9f9ee;
+            color: #18753c;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .plan {
+            background: white;
+            margin-top: 25px;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.07);
+        }
+
+        .plan h2 {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            color: #435349;
+        }
+
+        .changes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .change {
+            background: #f5faf6;
+            border-radius: 17px;
+            padding: 20px;
+        }
+
+        .change strong {
+            display: block;
+            margin-bottom: 7px;
+            color: #18753c;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 27px;
+            border-radius: 50px;
+            margin: 6px;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #27a65a, #168344);
+            color: white;
+        }
+
+        .secondary {
+            background: white;
+            color: #287447;
+            border: 2px solid #dce9df;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Fit<span>Buddy</span> AI
+    </div>
+
+
+    <section class="hero">
+
+        <div class="hero-icon">
+            ✨
+        </div>
+
+        <h1>
+            Your Plan Has Been Adapted!
+        </h1>
+
+        <p>
+            FitBuddy AI used your feedback to personalize
+            your next training experience.
+        </p>
+
+    </section>
+
+
+    <!-- FEEDBACK SUMMARY -->
+
+    <section class="feedback-summary">
+
+        <h2>🧠 What FitBuddy Learned</h2>
+
+        <span class="pill">
+            {{ difficulty }}
+        </span>
+
+        {% if changes %}
+
+            {% for change in changes %}
+
+                <span class="pill">
+                    {{ change }}
+                </span>
+
+            {% endfor %}
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- CHANGES -->
+
+    <section class="plan">
+
+        <h2>
+            🔄 What Changed?
+        </h2>
+
+        <div class="changes">
+
+            <div class="change">
+
+                <strong>🏋️ Training</strong>
+
+                Your workout intensity has been adjusted
+                according to your feedback.
+
+            </div>
+
+
+            <div class="change">
+
+                <strong>⚡ Exercise Mix</strong>
+
+                FitBuddy can modify cardio, strength,
+                recovery or exercise variety.
+
+            </div>
+
+
+            <div class="change">
+
+                <strong>🧘 Recovery</strong>
+
+                Recovery recommendations can be increased
+                when your body needs more rest.
+
+            </div>
+
+
+            <div class="change">
+
+                <strong>🥗 Nutrition</strong>
+
+                Your nutrition and recovery guidance
+                can continue alongside your new plan.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- UPDATED PLAN -->
+
+    <section class="plan">
+
+        <h2>
+            🏆 Your Updated Workout Plan
+        </h2>
+
+        <pre>{{ updated_plan }}</pre>
+
+    </section>
+
+
+    <div class="actions">
+
+        <a
+            href="/"
+            class="btn primary"
+        >
+            🏠 Back to FitBuddy
+        </a>
+
+        <a
+            href="/feedback?username={{ username }}"
+            class="btn secondary"
+        >
+            💬 Give More Feedback
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

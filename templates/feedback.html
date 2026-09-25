@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy AI | Feedback</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #ddfce8, transparent 35%),
+                radial-gradient(circle at bottom right, #dcecff, transparent 35%),
+                #f7faf8;
+            color: #17251d;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 0 70px;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .logo span {
+            color: #27a65a;
+        }
+
+        .card {
+            background: rgba(255,255,255,.94);
+            border-radius: 30px;
+            padding: 42px;
+            box-shadow: 0 20px 55px rgba(0,0,0,.09);
+        }
+
+        .heading {
+            text-align: center;
+        }
+
+        .heading .icon {
+            font-size: 48px;
+        }
+
+        .heading h1 {
+            margin: 12px 0 10px;
+            font-size: 34px;
+        }
+
+        .heading p {
+            color: #718076;
+            line-height: 1.6;
+        }
+
+        .question {
+            margin-top: 35px;
+        }
+
+        .question h2 {
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+
+        .choices {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .choice input {
+            display: none;
+        }
+
+        .choice label {
+            display: block;
+            text-align: center;
+            padding: 18px 8px;
+            border: 2px solid #e4ebe6;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: .2s;
+            background: white;
+        }
+
+        .choice label:hover {
+            border-color: #27a65a;
+            transform: translateY(-2px);
+        }
+
+        .choice input:checked + label {
+            background: #e9f9ee;
+            border-color: #27a65a;
+            color: #18753c;
+            font-weight: bold;
+        }
+
+        .emoji {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+
+        .adjustments {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .adjustment input {
+            display: none;
+        }
+
+        .adjustment label {
+            display: block;
+            padding: 17px;
+            border: 2px solid #e4ebe6;
+            border-radius: 15px;
+            cursor: pointer;
+            background: white;
+            transition: .2s;
+        }
+
+        .adjustment input:checked + label {
+            background: #e9f9ee;
+            border-color: #27a65a;
+            color: #18753c;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            resize: vertical;
+            padding: 16px;
+            border: 2px solid #e4ebe6;
+            border-radius: 16px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #27a65a;
+        }
+
+        .submit {
+            width: 100%;
+            border: none;
+            margin-top: 30px;
+            padding: 17px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #27a65a, #168344);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(39,166,90,.25);
+        }
+
+        .submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #65776c;
+            text-decoration: none;
+        }
+
+        @media(max-width:650px) {
+
+            .card {
+                padding: 25px;
+            }
+
+            .choices {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .adjustments {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Fit<span>Buddy</span> AI
+    </div>
+
+    <div class="card">
+
+        <div class="heading">
+
+            <div class="icon">💬</div>
+
+            <h1>How was your workout?</h1>
+
+            <p>
+                Your feedback helps FitBuddy AI understand your experience
+                and adapt your next plan.
+            </p>
+
+        </div>
+
+
+        <form action="/submit-feedback" method="post">
+
+            <input
+                type="hidden"
+                name="username"
+                value="{{ username }}"
+            >
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="question">
+
+                <h2>1. How did the workout feel?</h2>
+
+                <div class="choices">
+
+                    <div class="choice">
+                        <input
+                            type="radio"
+                            id="easy"
+                            name="difficulty"
+                            value="Easy"
+                            required
+                        >
+                        <label for="easy">
+                            <span class="emoji">😊</span>
+                            Easy
+                        </label>
+                    </div>
+
+                    <div class="choice">
+                        <input
+                            type="radio"
+                            id="right"
+                            name="difficulty"
+                            value="Just Right"
+                        >
+                        <label for="right">
+                            <span class="emoji">😐</span>
+                            Just Right
+                        </label>
+                    </div>
+
+                    <div class="choice">
+                        <input
+                            type="radio"
+                            id="hard"
+                            name="difficulty"
+                            value="Challenging"
+                        >
+                        <label for="hard">
+                            <span class="emoji">🔥</span>
+                            Challenging
+                        </label>
+                    </div>
+
+                    <div class="choice">
+                        <input
+                            type="radio"
+                            id="very-hard"
+                            name="difficulty"
+                            value="Too Difficult"
+                        >
+                        <label for="very-hard">
+                            <span class="emoji">😵</span>
+                            Too Difficult
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADJUSTMENTS -->
+
+            <div class="question">
+
+                <h2>2. What would you like FitBuddy to change?</h2>
+
+                <div class="adjustments">
+
+                    <div class="adjustment">
+
+                        <input
+                            type="checkbox"
+                            id="reduce"
+                            name="changes"
+                            value="Reduce intensity"
+                        >
+
+                        <label for="reduce">
+                            🌿 Reduce intensity
+                        </label>
+
+                    </div>
+
+
+                    <div class="adjustment">
+
+                        <input
+                            type="checkbox"
+                            id="increase"
+                            name="changes"
+                            value="Increase intensity"
+                        >
+
+                        <label for="increase">
+                            🔥 Increase intensity
+                        </label>
+
+                    </div>
+
+
+                    <div class="adjustment">
+
+                        <input
+                            type="checkbox"
+                            id="cardio"
+                            name="changes"
+                            value="More cardio"
+                        >
+
+                        <label for="cardio">
+                            🏃 More cardio
+                        </label>
+
+                    </div>
+
+
+                    <div class="adjustment">
+
+                        <input
+                            type="checkbox"
+                            id="strength"
+                            name="changes"
+                            value="More strength"
+                        >
+
+                        <label for="strength">
+                            🏋️ More strength
+                        </label>
+
+                    </div>
+
+
+                    <div class="adjustment">
+
+                        <input
+                            type="checkbox"
+                            id="recovery"
+                            name="changes"
+                            value="More recovery"
+                        >
+
+                        <label for="recovery">
+                            🧘 More recovery
+                        </label>
+
+                    </div>
+
+
+                    <div class="adjustment">
+
+                        <input
+                            type="checkbox"
+                            id="variety"
+                            name="changes"
+                            value="More exercise variety"
+                        >
+
+                        <label for="variety">
+                            ✨ More variety
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TEXT FEEDBACK -->
+
+            <div class="question">
+
+                <h2>3. Tell FitBuddy more</h2>
+
+                <textarea
+                    name="feedback"
+                    placeholder="Example: The squats felt easy, but the cardio was difficult..."
+                ></textarea>
+
+            </div>
+
+
+            <button class="submit" type="submit">
+                ✨ Adapt My Plan
+            </button>
+
+        </form>
+
+
+        <a href="/" class="back">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

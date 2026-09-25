@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy AI | Your Plan</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top left, #dfffe8, transparent 35%),
+                radial-gradient(circle at bottom right, #dcecff, transparent 35%),
+                #f7faf8;
+            color: #17251d;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px 0 60px;
+        }
+
+        /* HEADER */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #27a65a;
+        }
+
+        .badge {
+            background: white;
+            padding: 10px 16px;
+            border-radius: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+            font-size: 14px;
+            color: #47805b;
+            font-weight: bold;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #123b25, #217346);
+            color: white;
+            border-radius: 28px;
+            padding: 42px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 45px rgba(20,80,45,.18);
+        }
+
+        .hero small {
+            color: #bcebc9;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            color: #dcefe2;
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* SECTION */
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 35px 0 18px;
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+        }
+
+        .section-title span {
+            color: #27a65a;
+            font-weight: bold;
+        }
+
+        /* WORKOUT GRID */
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+        }
+
+        .day-card {
+            background: rgba(255,255,255,.9);
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,.07);
+            border: 1px solid #e7eee9;
+            transition: .25s;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(0,0,0,.1);
+        }
+
+        .day-number {
+            color: #27a65a;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .day-card h3 {
+            font-size: 22px;
+            margin: 7px 0 15px;
+        }
+
+        .exercise {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf1ee;
+            font-size: 14px;
+        }
+
+        .exercise:last-child {
+            border-bottom: none;
+        }
+
+        .exercise strong {
+            color: #26382d;
+        }
+
+        .exercise span {
+            color: #5b7865;
+            white-space: nowrap;
+        }
+
+        /* NUTRITION */
+
+        .nutrition {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .nutrition-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.06);
+        }
+
+        .nutrition-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .nutrition-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .nutrition-card p {
+            color: #64756a;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* TIP */
+
+        .tip {
+            background: #e9f9ee;
+            border-left: 5px solid #27a65a;
+            padding: 22px;
+            border-radius: 15px;
+            margin-top: 25px;
+            line-height: 1.6;
+        }
+
+        /* BUTTON */
+
+        .action-area {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .feedback-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(135deg, #27a65a, #168344);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 12px 30px rgba(39,166,90,.25);
+            transition: .2s;
+        }
+
+        .feedback-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .back {
+            display: block;
+            margin-top: 15px;
+            color: #688071;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        @media(max-width:600px) {
+            .hero {
+                padding: 28px;
+            }
+
+            .hero h1 {
+                font-size: 31px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="topbar">
+        <div class="logo">Fit<span>Buddy</span> AI</div>
+
+        <div class="badge">
+            ✨ AI Personalized
+        </div>
+    </div>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <small>YOUR PERSONAL FITNESS JOURNEY</small>
+
+        <h1>
+            Hey {{ username }} 👋
+        </h1>
+
+        <p>
+            Your personalized FitBuddy plan is ready.
+            Stay consistent, listen to your body, and let AI
+            help you improve every step of the way.
+        </p>
+
+    </section>
+
+
+    <!-- WORKOUT -->
+
+    <div class="section-title">
+        <h2>🏋️ Your 7-Day Workout</h2>
+        <span>{{ goal }}</span>
+    </div>
+
+
+    <div class="workout-grid">
+
+        {% if workout_plan %}
+
+            {% for day in workout_plan.split('DAY ')[1:] %}
+
+            <div class="day-card">
+
+                <div class="day-number">
+                    DAY {{ day.split('—')[0].strip() if '—' in day else loop.index }}
+                </div>
+
+                <h3>
+                    {% if '—' in day %}
+                        {{ day.split('—')[1].split('\n')[0].strip() }}
+                    {% else %}
+                        Training
+                    {% endif %}
+                </h3>
+
+                <div class="exercise">
+                    <strong>Workout</strong>
+                    <span>Follow AI plan</span>
+                </div>
+
+                <div class="exercise">
+                    <strong>Sets & Reps</strong>
+                    <span>As prescribed</span>
+                </div>
+
+                <div class="exercise">
+                    <strong>Recovery</strong>
+                    <span>Stay hydrated</span>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="day-card">
+                <div class="day-number">YOUR PLAN</div>
+                <h3>Personalized Workout</h3>
+                <p>
+                    Your AI-generated workout plan will appear here.
+                </p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- FULL PLAN -->
+
+    <div class="section-title">
+        <h2>📋 Complete AI Plan</h2>
+    </div>
+
+    <div class="tip">
+        <strong>FitBuddy AI Plan</strong>
+        <br><br>
+
+        <pre style="
+            white-space: pre-wrap;
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            color: #3e5145;
+        ">{{ workout_plan }}</pre>
+    </div>
+
+
+    <!-- NUTRITION -->
+
+    <div class="section-title">
+        <h2>🥗 Nutrition & Recovery</h2>
+    </div>
+
+    <div class="nutrition">
+
+        <div class="nutrition-card">
+            <div class="nutrition-icon">💧</div>
+            <h3>Hydration</h3>
+            <p>
+                Drink water consistently throughout the day,
+                especially before and after your workout.
+            </p>
+        </div>
+
+        <div class="nutrition-card">
+            <div class="nutrition-icon">🥩</div>
+            <h3>Protein</h3>
+            <p>
+                Include protein-rich foods in your meals
+                to support recovery and muscle maintenance.
+            </p>
+        </div>
+
+        <div class="nutrition-card">
+            <div class="nutrition-icon">🍎</div>
+            <h3>Balanced Meals</h3>
+            <p>
+                Combine vegetables, fruits, whole grains
+                and appropriate protein sources.
+            </p>
+        </div>
+
+        <div class="nutrition-card">
+            <div class="nutrition-icon">😴</div>
+            <h3>Recovery</h3>
+            <p>
+                Prioritize quality sleep and give your body
+                enough recovery time between difficult sessions.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- AI NUTRITION TIP -->
+
+    <div class="tip">
+
+        <strong>💡 FitBuddy Nutrition Tip</strong>
+
+        <br><br>
+
+        {{ nutrition_tip }}
+
+    </div>
+
+
+    <!-- FEEDBACK -->
+
+    <div class="action-area">
+
+        <a
+            href="/feedback?username={{ username }}"
+            class="feedback-btn"
+        >
+            💬 Give Feedback
+        </a>
+
+        <a href="/" class="back">
+            ← Back to FitBuddy Home
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
